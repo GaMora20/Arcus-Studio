@@ -97,15 +97,27 @@
 
 <!-- HERO -->
 <section class="hero">
+  <!-- Canvas para las líneas de fondo -->
+  <canvas id="heroLinesCanvas"></canvas>
+
   <div class="hero-content">
-    
     <h1 class="hero-title">
-      <img 
-        src="images/imagotipo_blanco_arcus.svg" 
-        alt="Arcus Studio Logo" 
-        class="hero-logo"
-      >
+      <img src="images/imagotipo_blanco_arcus.svg" alt="Arcus Studio Logo" class="hero-logo">
     </h1>
+
+    <p class="tagline fade-up">
+      Creative Performance Studio
+    </p>
+
+    <a href="#" class="button fade-in">
+      Work with us
+    </a>
+  </div>
+</section>
+
+  <!-- overlay de líneas igual que Coming Soon -->
+  <canvas id="heroLinesCanvas"></canvas>
+</h1>
 
     <p class="tagline fade-up">
       Creative Performance Studio
@@ -380,6 +392,86 @@
       line_linked: { enable: true, distance: 100, color: "#CCDD83", opacity: 0.2 }
     }
   });
+</script>
+<script>
+const heroCanvas = document.getElementById("heroLinesCanvas");
+const heroCtx = heroCanvas.getContext("2d");
+
+function resizeHeroCanvas() {
+  heroCanvas.width = heroCanvas.parentElement.offsetWidth;
+  heroCanvas.height = heroCanvas.parentElement.offsetHeight;
+}
+resizeHeroCanvas();
+
+let heroMeteors = [];
+
+function createHeroMeteor() {
+  const horizontal = Math.random() > 0.5;
+
+  return {
+    horizontal: horizontal,
+    length: 220 + Math.random() * 260,
+    speed: 2 + Math.random() * 3.5,
+    thickness: 0.15 + Math.random() * 0.25,
+    opacity: 0.4 + Math.random() * 0.4,
+    x: horizontal ? -300 : Math.random() * heroCanvas.width,
+    y: horizontal ? Math.random() * heroCanvas.height : heroCanvas.height + 300
+  };
+}
+
+// Cantidad de líneas: ajusta según quieras densidad
+for (let i = 0; i < 9; i++) {
+  heroMeteors.push(createHeroMeteor());
+}
+
+function animateHeroLines() {
+  heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+  heroMeteors.forEach((m, index) => {
+    let gradient;
+
+    if (m.horizontal) {
+      gradient = heroCtx.createLinearGradient(
+        m.x - m.length, m.y,
+        m.x, m.y
+      );
+      gradient.addColorStop(0, "rgba(198,214,154,0)");
+      gradient.addColorStop(1, `rgba(198,214,154,${m.opacity})`);
+
+      heroCtx.beginPath();
+      heroCtx.moveTo(m.x - m.length, m.y);
+      heroCtx.lineTo(m.x, m.y);
+      m.x += m.speed;
+
+    } else {
+      gradient = heroCtx.createLinearGradient(
+        m.x, m.y + m.length,
+        m.x, m.y
+      );
+      gradient.addColorStop(0, "rgba(198,214,154,0)");
+      gradient.addColorStop(1, `rgba(198,214,154,${m.opacity})`);
+
+      heroCtx.beginPath();
+      heroCtx.moveTo(m.x, m.y + m.length);
+      heroCtx.lineTo(m.x, m.y);
+      m.y -= m.speed;
+    }
+
+    heroCtx.strokeStyle = gradient;
+    heroCtx.lineWidth = m.thickness;
+    heroCtx.lineCap = "butt";
+    heroCtx.stroke();
+
+    if (m.x > heroCanvas.width + 250 || m.y < -250) {
+      heroMeteors[index] = createHeroMeteor();
+    }
+  });
+
+  requestAnimationFrame(animateHeroLines);
+}
+
+animateHeroLines();
+window.addEventListener("resize", resizeHeroCanvas);
 </script>
 
 </body>
