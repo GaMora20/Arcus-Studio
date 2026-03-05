@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arcus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      background: #000;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-top: -60px;
+    }
+
+    /* ISOTIPO MÁS GRANDE Y GLOW SÚPER SUTIL */
+    .hero-logo {
+      width: 190px;
+      animation: glowBreath 6s ease-in-out infinite;
+      filter: drop-shadow(0 0 3px rgba(235,250,220,0.25));
+    }
+
+    @keyframes glowBreath {
+      0% {
+        filter: drop-shadow(0 0 2px rgba(235,250,220,0.15));
+      }
+      50% {
+        filter: drop-shadow(0 0 6px rgba(235,250,220,0.35));
+      }
+      100% {
+        filter: drop-shadow(0 0 2px rgba(235,250,220,0.15));
+      }
+    }
+
+    .coming-message {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      color: #ffffff;
+      opacity: 0.85;
+    }
+
+    .coming-message span {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      opacity: 0.6;
+    }
+
+    #linesCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .navbar, .hero {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+<canvas id="linesCanvas"></canvas>
+
+<header class="navbar fade-in-navbar">
+  <div id="particles-navbar"></div>
+  <div class="navbar-content">
+    <div class="logo">ARCUS</div>
+    <nav class="menu"></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    
+    <h1 class="hero-title">
+      <img 
+        src="images/Isotipo_Blanco_Arcus.svg" 
+        alt="Arcus Isotipo" 
+        class="hero-logo"
+      >
+    </h1>
+
+    <p class="coming-message">
+      A New Standard in Creative Performance.
+      <span>Launching Soon.</span>
+    </p>
+
+  </div>
+</section>
+
+<script>
+const canvas = document.getElementById("linesCanvas");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+
+let meteors = [];
+
+function createMeteor() {
+  const horizontal = Math.random() > 0.5;
+
+  return {
+    horizontal: horizontal,
+    length: 220 + Math.random() * 260,
+    speed: 2 + Math.random() * 3.5,
+    thickness: 0.15 + Math.random() * 0.25,
+    opacity: 0.4 + Math.random() * 0.4,
+    x: horizontal ? -300 : Math.random() * canvas.width,
+    y: horizontal ? Math.random() * canvas.height : canvas.height + 300
+  };
+}
+
+for (let i = 0; i < 9; i++) {
+  meteors.push(createMeteor());
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  meteors.forEach((m, index) => {
+
+    let gradient;
+
+    if (m.horizontal) {
+      gradient = ctx.createLinearGradient(
+        m.x - m.length, m.y,
+        m.x, m.y
+      );
+      gradient.addColorStop(0, "rgba(198,214,154,0)");
+      gradient.addColorStop(1, `rgba(198,214,154,${m.opacity})`);
+
+      ctx.beginPath();
+      ctx.moveTo(m.x - m.length, m.y);
+      ctx.lineTo(m.x, m.y);
+      m.x += m.speed;
+
+    } else {
+      gradient = ctx.createLinearGradient(
+        m.x, m.y + m.length,
+        m.x, m.y
+      );
+      gradient.addColorStop(0, "rgba(198,214,154,0)");
+      gradient.addColorStop(1, `rgba(198,214,154,${m.opacity})`);
+
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y + m.length);
+      ctx.lineTo(m.x, m.y);
+      m.y -= m.speed;
+    }
+
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = m.thickness;
+    ctx.lineCap = "butt";
+    ctx.stroke();
+
+    if (m.x > canvas.width + 250 || m.y < -250) {
+      meteors[index] = createMeteor();
+    }
+
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+window.addEventListener("resize", resizeCanvas);
+</script>
+
+</body>
+</html>

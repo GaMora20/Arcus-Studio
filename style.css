@@ -1,0 +1,629 @@
+/* =============================== */
+/* GLOBAL STYLES */
+/* =============================== */
+:root {
+  --accent-green: #CCDD83;
+}
+body {
+  margin: 0;
+  background-color: #0b0b0b;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+.section-title {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 80px;
+  color: #CCDD83;
+  letter-spacing: 1px;
+}
+
+/* =============================== */
+/* NAVBAR */
+/* =============================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  padding: 0 40px;
+  box-sizing: border-box;
+  opacity: 0;
+  animation: fadeInNavbar 1s forwards;
+  animation-delay: 1.8s;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes fadeInNavbar {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.navbar .menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar .menu a {
+  text-decoration: none;
+  color: white;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+.navbar .menu a:hover {
+  color: #CCDD83;
+}
+
+/* Dropdown idiomas */
+.lang-options {
+  display: none;
+  position: absolute;
+  top: 120%;
+  background: #111;
+  border-radius: 6px;
+}
+
+.lang-dropdown:hover .lang-options {
+  display: block;
+}
+
+/* =============================== */
+/* ANIMATIONS */
+/* =============================== */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Animaciones de líneas */
+@keyframes trimFloat {
+  0%   { transform: translateY(-5%); }
+  50%  { transform: translateY(5%); }
+  100% { transform: translateY(-5%); }
+}
+
+@keyframes subtlePulse {
+  0%   { opacity: 0.35; }
+  50%  { opacity: 0.80; }
+  100% { opacity: 0.35; }
+}
+
+/* =============================== */
+/* MANIFESTO SECTION */
+/* =============================== */
+.manifesto {
+  width: 100%;
+  background: #151515;
+  padding: 140px 8%;
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(122, 143, 77, 0.08);
+  border-bottom: 1px solid rgba(122, 143, 77, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.manifesto-container {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.manifesto h2 {
+  font-size: 2.4rem;
+  color: #CCDD83;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.manifesto p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+}
+
+/* =============================== */
+/* HERO */
+/* =============================== */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Logo container */
+.hero-title {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeUp 1s forwards;
+}
+
+/* Logo */
+.hero-logo {
+  width: 420px;
+  max-width: 90%;
+  height: auto;
+}
+
+/* Tagline */
+.hero .tagline {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-top: 15px;
+  width: 420px;
+  max-width: 90%;
+  text-align: center;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeUp 0.8s forwards;
+  animation-delay: 0.5s;
+}
+
+/* Button */
+.hero .button {
+  text-decoration: none;
+  color: #CCDD83;
+  border: 1px solid #CCDD83;
+  padding: 12px 28px;
+  margin-top: 30px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: 1s;
+}
+
+.hero .button:hover {
+  background: #CCDD83;
+  color: black;
+}
+
+/* =============================== */
+/* GLOBAL CARD STYLE */
+/* =============================== */
+.card,
+.work-card,
+.process-step,
+.testimonial-card,
+.brand-collaborations-container {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 143, 77, 0.15);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.card:hover,
+.work-card:hover,
+.process-step:hover,
+.testimonial-card:hover,
+.brand-collaborations-container:hover {
+  transform: translateY(-8px);
+  border: 1px solid #CCDD83;
+  box-shadow: 0 0 25px rgba(122, 143, 77, 0.25);
+}
+
+/* =============================== */
+/* CAPABILITIES */
+/* =============================== */
+.capabilities {
+  padding: 80px 8%;
+  position: relative;
+}
+
+.capabilities .grid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.capabilities .card {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card h3 {
+  font-size: 1.6rem;
+  color: #CCDD83;
+  margin-bottom: 12px;
+}
+
+.card .card-desc {
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.9;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.card ul {
+  list-style: disc inside;
+  padding-left: 0;
+  margin: 0;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.card ul li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.capabilities .lines-overlay {
+  position: absolute;
+  bottom: 0;
+  height: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 992px) {
+  .capabilities .grid {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+  }
+}
+
+/* =============================== */
+/* SELECTED WORK */
+/* =============================== */
+.selected-work {
+  position: relative;
+  padding: 180px 8%;
+  overflow: hidden;
+}
+
+.selected-work-background {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  background-image: url('https://images.unsplash.com/photo-1581091215369-1b2d3ff511b7?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.12;
+  z-index: 0;
+}
+
+.selected-work::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 30, 40, 0.45);
+  mix-blend-mode: overlay;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.selected-work-content {
+  position: relative;
+  z-index: 2;
+}
+
+.selected-work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 60px;
+}
+
+.work-image-placeholder {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* =============================== */
+/* BRAND COLLABORATIONS */
+/* =============================== */
+.brand-collaborations {
+  position: relative;
+  padding: 180px 8%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.brand-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, #0b0b0b, #1a1a1a, #CCDD83, #0b0b0b);
+  background-size: 800% 800%;
+  animation: gradientMove 15s ease infinite;
+  z-index: 0;
+}
+
+.brand-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.brand-collaborations-container {
+  position: relative;
+  z-index: 2;
+}
+
+.brand-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 80px;
+}
+
+.brand-logo {
+  font-size: 1.6rem;
+  font-weight: 500;
+  opacity: 0.95;
+  transition: opacity 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.brand-logo:hover {
+  opacity: 1;
+  transform: translateY(-6px);
+  text-shadow: 0 0 15px #CCDD83, 0 0 25px #CCDD83;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =============================== */
+/* PROCESS */
+/* =============================== */
+.process {
+  padding: 140px 8%;
+  text-align: center;
+  position: relative;
+}
+
+.process-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* =============================== */
+/* TESTIMONIALS */
+/* =============================== */
+.testimonials {
+  padding: 140px 8%;
+  text-align: center;
+  position: relative;
+}
+
+.testimonial-card {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* =============================== */
+/* CTA */
+/* =============================== */
+.cta {
+  padding: 140px 8%;
+  text-align: center;
+  background: #0b0b0b;
+  position: relative;
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.cta .button {
+  text-decoration: none;
+  color: #CCDD83;
+  border: 1px solid #CCDD83;
+  padding: 14px 34px;
+  display: inline-block;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cta .button:hover,
+.cta .button:focus {
+  background: #CCDD83;
+  color: black;
+}
+
+/* =============================== */
+/* FOOTER */
+/* =============================== */
+footer {
+  padding: 40px 8%;
+  text-align: center;
+  background: #111;
+}
+
+footer .footer-links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+footer .footer-links a:hover {
+  color: #CCDD83;
+}
+
+/* =============================== */
+/* LÍNEAS ANIMADAS - ACTUALIZADO */
+/* =============================== */
+.lines-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lines-overlay span {
+  position: absolute;
+  width: 1px;
+  height: 120%;
+  top: -10%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(122, 143, 77, 0.15) 30%,
+    rgba(122, 143, 77, 0.5) 50%,
+    rgba(122, 143, 77, 0.15) 70%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* Animación de respiración un poco más marcada */
+@keyframes subtlePulse {
+  0%   { opacity: var(--base-opacity); }
+  25%  { opacity: calc(var(--base-opacity) + (var(--peak-opacity) - var(--base-opacity)) * 0.5); }
+  50%  { opacity: var(--peak-opacity); }
+  75%  { opacity: calc(var(--base-opacity) + (var(--peak-opacity) - var(--base-opacity)) * 0.5); }
+  100% { opacity: var(--base-opacity); }
+}
+/* =============================== */
+/* GLOBAL SECTION SPACING */
+/* =============================== */
+section + section {
+  margin-top: 120px;
+}
+
+/* =============================== */
+/* UPDATE SISTEMA DINÁMICO DE LÍNEAS */
+/* No elimina nada anterior, solo mejora comportamiento */
+/* =============================== */
+
+/* Permite que cada sección tenga diferente cantidad y distribución */
+section .lines-overlay span {
+  left: auto;
+}
+
+/* Ajuste específico para process (permite 4 líneas si agregas una más en HTML) */
+.process .lines-overlay span {
+  height: 130%;
+  opacity: 0.7;
+}
+
+/* Expertise líneas más sutiles */
+.capabilities .lines-overlay span {
+  opacity: 0.45;
+}
+
+/* CTA más centrado visualmente */
+.cta .lines-overlay span {
+  opacity: 0.65;
+}
+
+/* =============================== */
+/* FIN CSS COMPLETO ACTUALIZADO */
+/* =============================== */
+
+/* =============================== */
+/* BLOQUE ADICIONAL PARA CENTRAR Y EVITAR SCROLL HORIZONTAL */
+/* =============================== */
+html, body {
+  overflow-x: hidden;
+}
+
+.hero-content,
+.manifesto-container,
+.grid,
+.selected-work-content,
+.selected-work-grid,
+.brand-collaborations-container,
+.process-grid,
+.testimonial-card,
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+img,
+.work-image-placeholder {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.grid,
+.selected-work-grid,
+.brand-logos,
+.process-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card,
+.work-card,
+.process-step,
+.brand-logo {
+  flex: 1 1 300px;
+  max-width: 100%;
+}

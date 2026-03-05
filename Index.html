@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arcus Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- AJUSTES PARA CENTRAR Y EVITAR SCROLL HORIZONTAL -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* evita scroll horizontal de toda la página */
+      box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    /* Centrar contenedores principales sin tocar tu HTML */
+    .hero-content,
+    .manifesto-container,
+    .grid,
+    .selected-work-content,
+    .selected-work-grid,
+    .brand-collaborations-container,
+    .process-grid,
+    .testimonial-card,
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Asegurar que imágenes y placeholders no desborden */
+    img,
+    .work-image-placeholder {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Flexbox para grids y listas de elementos */
+    .grid,
+    .selected-work-grid,
+    .brand-logos,
+    .process-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .work-card,
+    .card,
+    .process-step,
+    .brand-logo {
+      flex: 1 1 300px;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER MINIMALISTA -->
+<header class="navbar fade-in-navbar">
+  <div id="particles-navbar"></div>
+
+  <div class="navbar-content">
+    <div class="logo">ARCUS</div>
+    <nav class="menu">
+      <a href="#">Home</a>
+      <a href="#">Selected Work</a>
+      <a href="#">Collaborations</a>
+      <a href="#">Contact</a>
+
+      <!-- Dropdown de idiomas -->
+      <div class="lang-dropdown">
+        <span class="lang-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#CCDD83" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <line x1="12" y1="2" x2="12" y2="22"></line>
+            <path d="M4.93 4.93a10 10 0 0 1 14.14 14.14"></path>
+          </svg>
+        </span>
+        <div class="lang-options">
+          <button id="lang-en">English</button>
+          <button id="lang-es">Español</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    
+    <h1 class="hero-title">
+      <img 
+        src="images/imagotipo_blanco_arcus.svg" 
+        alt="Arcus Studio Logo" 
+        class="hero-logo"
+      >
+    </h1>
+
+    <p class="tagline fade-up">
+      Creative Performance Studio
+    </p>
+
+    <a href="#" class="button fade-in">
+      Work with us
+    </a>
+
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="manifesto-container">
+    <h2>Design with Direction</h2>
+
+    <p>
+      At Arcus Studio, strategy and creativity operate as one. 
+      We design and evolve structured brand systems that align vision, execution, and performance. 
+      Every project is built to refine positioning, strengthen identity, and create measurable momentum.
+    </p>
+
+    <p>
+      Through strategic consulting, we align business objectives with creative execution to build brands that scale with precision and intention.
+    </p>
+
+    <p class="manifesto-middle">
+      We don’t produce isolated assets.
+    </p>
+
+    <p class="manifesto-closing">
+      We shape brands to grow with clarity and purpose.
+    </p>
+
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="capabilities">
+  <div class="lines-overlay"></div>
+
+  <h2 class="section-title">Expertise</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Brand Systems</h3>
+      <p class="card-desc">Strategic brand foundations built to define positioning, identity and long-term clarity.</p>
+      <ul>
+        <li>Brand Strategy & Positioning</li>
+        <li>Visual Identity Systems</li>
+        <li>Brand Guidelines</li>
+        <li>Creative Direction</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Creative Production</h3>
+      <p class="card-desc">High-end visual execution across digital, motion and immersive environments.</p>
+      <ul>
+        <li>Motion Graphics</li>
+        <li>3D & Spatial Design</li>
+        <li>Event & Experience Visuals</li>
+        <li>Digital & Graphic Design</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Performance & Media</h3>
+      <p class="card-desc">Creative concepts designed to drive measurable growth and campaign performance.</p>
+      <ul>
+        <li>Campaign Concept Development</li>
+        <li>Paid Media Creative Strategy</li>
+        <li>Creative for Performance Ads</li>
+        <li>Data-Driven Optimization</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Strategic Consulting</h3>
+      <p class="card-desc">Business-aligned advisory designed to connect brand, creativity and performance with measurable growth outcomes.</p>
+      <ul>
+        <li>Creative Performance Audits</li>
+        <li>Brand & Growth Diagnostics</li>
+        <li>Creative Strategy Workshops</li>
+        <li>Scaling & Optimization Roadmaps</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK (PARALLAX) -->
+<section class="selected-work">
+  <div class="selected-work-background"></div>
+  <div class="selected-work-content">
+    <h2 class="section-title">Selected Work</h2>
+    <div class="selected-work-grid">
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project One</h3>
+      </div>
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project Two</h3>
+      </div>
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project Three</h3>
+      </div>
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project Four</h3>
+      </div>
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project Five</h3>
+      </div>
+      <div class="work-card">
+        <div class="work-image-placeholder"></div>
+        <h3>Project Six</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLABORATIONS -->
+<section class="brand-collaborations">
+  <div class="brand-background"></div>
+  <div class="brand-overlay"></div>
+
+  <div class="brand-collaborations-container">
+    <h2 class="section-title">Collaborations</h2>
+    <div class="brand-logos">
+      <div class="brand-logo">Walmart</div>
+      <div class="brand-logo">Dos Pinos</div>
+      <div class="brand-logo">Brand Three</div>
+      <div class="brand-logo">Brand Four</div>
+    </div>
+  </div>
+
+  <div id="particles-collab"></div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="lines-overlay"></div>
+
+  <h2 class="section-title">Our Process</h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <span>01</span>
+      <h3>Discover</h3>
+      <p>We analyze your brand, audience and market position.</p>
+    </div>
+    <div class="process-step">
+      <span>02</span>
+      <h3>Design</h3>
+      <p>We craft systems that connect creativity with performance.</p>
+    </div>
+    <div class="process-step">
+      <span>03</span>
+      <h3>Deploy</h3>
+      <p>We launch and optimize for measurable growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="lines-overlay"></div>
+
+  <h2 class="section-title">Client Perspective</h2>
+  <div class="testimonial-card">
+    <p>"Arcus transformed our brand into a scalable performance engine."</p>
+    <span>— Marketing Director</span>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="lines-overlay"></div>
+
+  <h2>Let’s Build What’s Next</h2>
+  <a href="#" class="button">Start a Project</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <p>© 2025 Arcus Studio</p>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script>
+  const linesPerSection = {
+    '.manifesto': 0,
+    '.capabilities': 2,
+    '.selected-work': 3,
+    '.brand-collaborations': 3,
+    '.process': 4,
+    '.testimonials': 2,
+    '.cta': 3
+  };
+
+  Object.keys(linesPerSection).forEach(selector => {
+    const section = document.querySelector(selector);
+    if (!section) return;
+
+    let overlay = section.querySelector('.lines-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.classList.add('lines-overlay');
+      section.prepend(overlay);
+    }
+    overlay.innerHTML = '';
+
+    const count = linesPerSection[selector];
+    for (let i = 0; i < count; i++) {
+      const span = document.createElement('span');
+      span.style.left = ((i + 1) / (count + 1) * 100) + '%';
+
+      const floatDuration = (Math.random() * 6 + 10).toFixed(2) + 's';
+      const floatDelay = (Math.random() * 5).toFixed(2) + 's';
+
+      const baseOpacity = 0.35 + Math.random() * 0.25;
+      const peakOpacity = baseOpacity + 0.2 + Math.random() * 0.25;
+      const pulseDuration = (Math.random() * 6 + 6).toFixed(2) + 's';
+      const pulseDelay = (Math.random() * 5).toFixed(2) + 's';
+
+      span.style.animation = `
+        trimFloat ${floatDuration} ease-in-out ${floatDelay} infinite,
+        subtlePulse ${pulseDuration} ease-in-out ${pulseDelay} infinite
+      `;
+
+      span.style.setProperty('--base-opacity', baseOpacity);
+      span.style.setProperty('--peak-opacity', peakOpacity);
+
+      overlay.appendChild(span);
+    }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.1/tsparticles.bundle.min.js"></script>
+<script>
+  tsParticles.load("particles-collab", {
+    fullScreen: { enable: false },
+    particles: {
+      number: { value: 40 },
+      color: { value: "#CCDD83" },
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
+      size: { value: 2 },
+      move: { enable: true, speed: 1.5 },
+      line_linked: { enable: true, distance: 120, color: "#CCDD83", opacity: 0.3 }
+    }
+  });
+
+  tsParticles.load("particles-navbar", {
+    fullScreen: { enable: false },
+    particles: {
+      number: { value: 20 },
+      color: { value: "#CCDD83" },
+      shape: { type: "circle" },
+      opacity: { value: 0.4 },
+      size: { value: 2 },
+      move: { enable: true, speed: 1 },
+      line_linked: { enable: true, distance: 100, color: "#CCDD83", opacity: 0.2 }
+    }
+  });
+</script>
+
+</body>
+</html>
